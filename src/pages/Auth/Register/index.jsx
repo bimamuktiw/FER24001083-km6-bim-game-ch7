@@ -12,7 +12,34 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false); // State untuk menentukan apakah password terlihat atau tidak
+  const [validationMessage, setValidationMessage] = useState("");
   const { loading, action } = useRegister();
+
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
+  };
+
+  const handleRegister = () => {
+    if (!name) {
+      setValidationMessage("Please enter your name");
+      return;
+    }
+    if (!email) {
+      setValidationMessage("Please enter your email");
+      return;
+    }
+    if (!validateEmail(email)) {
+      setValidationMessage("Please enter a valid email address");
+      return;
+    }
+    if (!password) {
+      setValidationMessage("Please enter your password");
+      return;
+    }
+    setValidationMessage("");
+    action(name, email, password);
+  };
 
   return (
     <AuthLayout>
@@ -32,25 +59,26 @@ export default function Register() {
         />
         <div className="relative">
           <input
-            className=" w-full px-4 py-2 rounded-lg"
+            className="w-full px-4 py-2 rounded-lg"
             placeholder="Password"
-            type={showPassword ? "text" : "password"} 
+            type={showPassword ? "text" : "password"}
             value={password}
             onChange={(fejs) => setPassword(fejs.target.value)}
           />
           <FontAwesomeIcon
-            icon={showPassword ? faEye : faEyeSlash} 
+            icon={showPassword ? faEye : faEyeSlash}
             className="absolute top-3 right-3 cursor-pointer text-gray-500"
-            onClick={() => setShowPassword(!showPassword)} 
+            onClick={() => setShowPassword(!showPassword)}
           />
         </div>
+        {validationMessage && (
+          <div className="text-red-500 text-sm">{validationMessage}</div>
+        )}
         <Button
           className="py-2"
           variant="primary"
           loading={loading}
-          onClick={() => {
-            action(name, email, password);
-          }}
+          onClick={handleRegister}
         >
           Sign Up
         </Button>
