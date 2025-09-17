@@ -48,7 +48,7 @@ function Navbar() {
               !scrollCondition ? "" : ""
             )}
           >
-            STREAMO
+            MEETFLIX
           </div>
           <div>
             {!isLoginPage && (
