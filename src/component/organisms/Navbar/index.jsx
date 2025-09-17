@@ -48,7 +48,7 @@ function Navbar() {
               !scrollCondition ? "" : ""
             )}
           >
-            NOBAR
+            STREAMO
           </div>
           <div>
             {!isLoginPage && (
