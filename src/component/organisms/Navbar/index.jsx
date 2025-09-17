@@ -48,7 +48,7 @@ function Navbar() {
               !scrollCondition ? "" : ""
             )}
           >
-            NEMPLOX
+            NEMPLO
           </div>
           <div>
             {!isLoginPage && (
