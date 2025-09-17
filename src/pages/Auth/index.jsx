@@ -20,7 +20,7 @@ export default function AuthLayout({ children }) {
   }, [dispatch, status]);
 
   return (
-    <div className="min-h-screen -mt-[60px] relative">
+    <div className="-mt-[60px] relative">
       <Carousel>
         {!loading &&
           data.map((item, index) => (
